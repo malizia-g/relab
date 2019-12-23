@@ -13,13 +13,14 @@ print(cened2.head())
 from shapely.geometry import Point 
 geometry = [Point(xy) for xy in zip(cened2['lat'], cened2['lng'])]
 
+
 Cened2crs = {'init': 'epsg:4326'}
 
 cened2GDF = gpd.GeoDataFrame(cened2, crs=Cened2crs, geometry=geometry)
 print(cened2GDF.head())
 
 #Convertiamo ora le coordinate dei punti nello stesso sistema di riferimento del dataframe della lombardia. 
-cened2GDF = cened2GDF.to_crs(lombardia.crs) 
+cened2GDF = cened2GDF.to_crs({'init': 'epsg:32632'}) 
 cened2GDF.head()
 
 #Per poter effettuare la sjoin (cioe' per associare ad un punto - cioe' ad un indirizzo
@@ -35,3 +36,5 @@ print(type(lombardia.geometry[0])) #Verifico i dati istat (Polygon)
 indirizzoSezione = gpd.sjoin(left_df=cened2GDF, right_df=lombardia, how="left", op="intersects")
 
 print(indirizzoSezione.head())
+
+indirizzoSezione.to_csv("res2.csv")
