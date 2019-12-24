@@ -5,7 +5,7 @@
 import pandas as pd
 import geopandas as gpd
 
-cened2 = pd.read_csv("DB_Cened2_100.csv")
+cened2 = pd.read_csv("cened/DB_Cened2_100.csv")
 print(cened2.head())
 print("hello")
 #Inserisco campo FullAddress
@@ -26,7 +26,7 @@ def getLatLong(row):
 cened2 = cened2.apply(getLatLong, axis=1)
 print(cened2.head)
 
-cened2.to_csv("res.csv")
+cened2.to_csv("results/res.csv")
 
 
 

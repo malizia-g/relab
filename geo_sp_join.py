@@ -4,14 +4,14 @@ import pandas as pd
 
 
 
-lombardia = gpd.read_file('R03_11_WGS84.shp')
+lombardia = gpd.read_file('istat/R03_11_WGS84.shp')
 print(lombardia.head())
 
-cened2 = pd.read_csv('res.csv')
+cened2 = pd.read_csv('results/res.csv')
 print(cened2.head())
 
 from shapely.geometry import Point 
-geometry = [Point(xy) for xy in zip(cened2['lat'], cened2['lng'])]
+geometry = [Point(xy) for xy in zip(cened2['lng'], cened2['lat'])]
 
 
 Cened2crs = {'init': 'epsg:4326'}
@@ -37,4 +37,4 @@ indirizzoSezione = gpd.sjoin(left_df=cened2GDF, right_df=lombardia, how="left", 
 
 print(indirizzoSezione.head())
 
-indirizzoSezione.to_csv("res2.csv")
+indirizzoSezione.to_csv("results/res2.csv")
