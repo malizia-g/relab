@@ -14,8 +14,7 @@ print(cened2.head())
 
 from googlemaps import Client as GoogleMaps
 
-gmaps = GoogleMaps('AIzaSyAFlR30N1paHO3FsTgoPOetrw2P1xZV028')
-#AIzaSyCzUI8LYmnHPyFrtRT8Q8IEREZfOygUl-U  API WALTER
+gmaps = GoogleMaps('API_URL')
 
 def getLatLong(row):
   geocode_result = gmaps.geocode(row['FullAddress'])
